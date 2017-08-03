@@ -9,6 +9,30 @@
     <script src="./assets/js/templates.js"></script>
     <script src="./assets/js/routes.js"></script>
     <script src="./assets/js/app.js"></script>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+    <!-- Firebase -->
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBQYWf5T3vuD6pICUwyjlS7wY88z47e1V4",
+        authDomain: "scrolling-sign.firebaseapp.com",
+        databaseURL: "https://scrolling-sign.firebaseio.com",
+        projectId: "scrolling-sign",
+        storageBucket: "scrolling-sign.appspot.com",
+        messagingSenderId: "333656098035"
+      };
+      firebase.initializeApp(config);
+    </script>
   </head>
   <body>
     <div class="grid-frame vertical">
