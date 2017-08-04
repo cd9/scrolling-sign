@@ -13,7 +13,6 @@ def writeString(s):
 		time.sleep(0.1)
 	ser.write('~')
 	time.sleep(0.1)
-	ser.close()
 
 
 if __name__ == "__main__":
