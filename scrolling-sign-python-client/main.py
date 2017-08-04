@@ -4,6 +4,14 @@ import time
 import datetime
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 
+def writeString(s):
+	ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout = 2)
+	time.sleep(6)
+	for i in range(0, len(s)):
+		ser.write(chr(s[i]))
+		time.sleep(0.010)
+
+
 if __name__ == "__main__":
 	time.sleep(5)
 	SECRET = '6FmRtZWFEupG9O140dJmr86XUfBcWxawvRkYAzar'
@@ -24,8 +32,7 @@ if __name__ == "__main__":
 			#MODE 0 = static text
 			showtext = data['text']
 			print(showtext)
-
-		if mode is 1:
+		elif mode is 1:
 			showtext = datetime.datetime.now().weekday()
 			if showtext is 0:
 				showtext = data['monday']
@@ -42,12 +49,10 @@ if __name__ == "__main__":
 			elif showtext is 6:
 				showtext = data['sunday']
 			print showtext
+
 		if (last!= showtext):
-			ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout = 2)
-			time.sleep(5)
-			print(last)
-			print(showtext)
-			ser.write(str(showtext))
+			writeString(showtext)
 			last = showtext
 			print ('it different')
 			ser.close()
+
