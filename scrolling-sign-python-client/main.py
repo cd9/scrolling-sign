@@ -8,7 +8,7 @@ def writeString(s):
 	ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout = 2)
 	time.sleep(6)
 	for i in range(0, len(s)):
-		ser.write(chr(s[i]))
+		ser.write(s[i])
 		time.sleep(0.010)
 	ser.write('~')
 
