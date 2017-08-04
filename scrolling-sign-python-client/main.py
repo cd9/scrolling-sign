@@ -20,14 +20,14 @@ if __name__ == "__main__":
 	EMAIL = 'dalyco884@gmail.com'
 	authentication = FirebaseAuthentication(SECRET,EMAIL, True, True)
 	firebase = FirebaseApplication(DSN, authentication)
-	data = firebase.get('/mode', None)
-	mode = firebase.get('/data', None)
+	data = firebase.get('/data', None)
+	mode = data['mode']
 	showtext = "booting up..."
 	last = None
 	while True:
 		print("refreshing")
 		data = firebase.get('/data', None)
-		mode = firebase.get('/mode', None)
+		mode = data['mode']
 		last = showtext
 		if mode is 0:
 			#MODE 0 = static text
@@ -49,7 +49,7 @@ if __name__ == "__main__":
 				showtext = data['saturday']
 			elif showtext is 6:
 				showtext = data['sunday']
-			print showtext
+			print(showtext)
 
 		if (last!= showtext):
 			writeString(showtext)
