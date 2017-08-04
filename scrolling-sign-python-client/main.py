@@ -9,9 +9,9 @@ def writeString(s):
 	time.sleep(6)
 	for i in range(0, len(s)):
 		ser.write(s[i])
-		time.sleep(0.010)
+		time.sleep(0.1)
 	ser.write('~')
-	time.sleep(0.010)
+	time.sleep(0.1)
 	ser.close()
 
 
