@@ -79,7 +79,6 @@ if __name__ == "__main__":
 			repetitions = 5
 		elif mode is 2:
 			pair = data['crypto']['pair']
-
 			if (pair=='all'):
 				showtext = ''
 				pair = 'ETHUSD'
@@ -106,7 +105,7 @@ if __name__ == "__main__":
 
 		diff = (datetime.datetime.now()-lastCheck).seconds
 
-		if (last!= showtext or diff>CRYPTO_CHECK_INTERVAL):
+		if (last!= showtext and diff>CRYPTO_CHECK_INTERVAL):
 			writeString(showtext, repetitions)
 			last = showtext
 			print ('it different')
