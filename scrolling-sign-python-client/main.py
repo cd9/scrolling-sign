@@ -79,7 +79,7 @@ if __name__ == "__main__":
 			repetitions = 5
 		elif mode is 2:
 			pair = data['crypto']['pair']
-			if pair is u'all':
+			if pair is 1:
 				showtext = ''
 				pair = 'ETHUSD'
 				price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
@@ -95,7 +95,6 @@ if __name__ == "__main__":
 				showtext = showtext + str(pair)+': '+str(price) + "     "
 				repetitions = 3
 			else:
-				print(pair)
 				price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
 				showtext = str(pair)+': '+str(price)
 				repetitions = 5
