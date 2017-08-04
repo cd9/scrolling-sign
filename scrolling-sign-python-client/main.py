@@ -16,7 +16,7 @@ def writeString(s):
 
 
 if __name__ == "__main__":
-	ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout = 2)
+	ser = serial.Serial('/dev/ttyACM0', baudrate=115200, timeout = 2)
 	time.sleep(5)
 	SECRET = '6FmRtZWFEupG9O140dJmr86XUfBcWxawvRkYAzar'
 	DSN = 'https://scrolling-sign.firebaseio.com'
