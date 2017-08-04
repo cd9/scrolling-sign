@@ -10,9 +10,9 @@ def writeString(s):
 	ser.write(' ')
 	for i in range(0, len(s)):
 		ser.write(s[i])
-		time.sleep(0.1)
+		#time.sleep(0.1)
 	ser.write('~')
-	time.sleep(0.1)
+	#time.sleep(0.1)
 
 
 if __name__ == "__main__":
