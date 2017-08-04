@@ -78,7 +78,7 @@ if __name__ == "__main__":
 			print(showtext)
 			repetitions = 5
 		elif mode is 2:
-			pair = data['crypto']['pair'])
+			pair = data['crypto']['pair']
 
 			if (pair=='all'):
 				showtext = ''
