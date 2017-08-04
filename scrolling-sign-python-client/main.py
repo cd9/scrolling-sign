@@ -4,9 +4,10 @@ import time
 import datetime
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 
+ser = None
+
 def writeString(s):
-	ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout = 2)
-	time.sleep(6)
+	ser.write(' ')
 	for i in range(0, len(s)):
 		ser.write(s[i])
 		time.sleep(0.1)
@@ -16,6 +17,7 @@ def writeString(s):
 
 
 if __name__ == "__main__":
+	ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout = 2)
 	time.sleep(5)
 	SECRET = '6FmRtZWFEupG9O140dJmr86XUfBcWxawvRkYAzar'
 	DSN = 'https://scrolling-sign.firebaseio.com'
