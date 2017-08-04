@@ -28,6 +28,7 @@ if __name__ == "__main__":
 		print("refreshing")
 		data = firebase.get('/data', None)
 		mode = data['mode']
+		print(mode)
 		last = showtext
 		if mode is 0:
 			#MODE 0 = static text
