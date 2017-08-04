@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 		diff = (datetime.datetime.now()-lastCheck).seconds
 
-		if (last!= showtext||diff>CRYPTO_CHECK_INTERVAL):
+		if (last!= showtext or diff>CRYPTO_CHECK_INTERVAL):
 			writeString(showtext, repetitions)
 			last = showtext
 			print ('it different')
