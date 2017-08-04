@@ -5,7 +5,7 @@ import datetime
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 
 if __name__ == "__main__":
-
+	time.sleep(5)
 	SECRET = '6FmRtZWFEupG9O140dJmr86XUfBcWxawvRkYAzar'
 	DSN = 'https://scrolling-sign.firebaseio.com'
 	EMAIL = 'dalyco884@gmail.com'
@@ -13,10 +13,8 @@ if __name__ == "__main__":
 	firebase = FirebaseApplication(DSN, authentication)
 	data = firebase.get('/mode', None)
 	mode = firebase.get('/data', None)
-	ser = serial.Serial('/dev/ttyACM0', 9600, timeout = 1)
-	time.sleep(3)
 	showtext = "booting up..."
-	ser.write(showtext)
+	last = None
 	while True:
 		print("refreshing")
 		data = firebase.get('/data', None)
@@ -44,6 +42,12 @@ if __name__ == "__main__":
 			elif showtext is 6:
 				showtext = data['sunday']
 			print showtext
-		if last is not showtext:
-			ser.write(showtext)
+		if (last!= showtext):
+			ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout = 2)
+			time.sleep(5)
+			print(last)
+			print(showtext)
+			ser.write(str(showtext))
 			last = showtext
+			print ('it different')
+			ser.close()
