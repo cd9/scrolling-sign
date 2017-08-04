@@ -1,0 +1,33 @@
+---
+name: home
+url: /
+---
+
+<div ng-controller="AppController" class="grid-container">
+	<div class="card">
+		<div class="card-divider">
+			<h1>Welcome to the LED Sign Control Panel!</h1>
+		</div>
+			<div class="small-12 grid-content">
+				<div class="small-12 medium-9 grid-content">
+				</div>
+				<br> </br>
+					<p>
+						<label>
+							Username
+							<span class="inline-label">
+								<input type="email" ng-model="username" placeholder="Email">
+							</span>
+							Password
+							<span class="inline-label">
+								<input type="password" ng-model="password" placeholder="Password">
+							</span>
+						</label>
+						<a class="button" ng-click="login()">Login</a> <a class="button" ng-click="logout()">Logout</a>
+						<strong>Status: {{ status }}</strong>
+						
+					</p>
+				</div>
+			</div>
+	</div>
+</div>

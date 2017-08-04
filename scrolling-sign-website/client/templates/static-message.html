@@ -1,0 +1,26 @@
+---
+name: static-message
+url: /static-message
+---
+
+<div ng-controller="AppController" class="grid-container">
+	<div class="card">
+		<div class="card-divider">
+		<h1>Static Message</h1>
+		</div>
+		<div class="card-section">
+			<p>Static Message mode displays one message on loop on the sign.</p>
+			<div class="small-12 medium-9 grid-content">
+				<label>
+					Enter a message you would like to display.  The message will be automatically sent to the sign.
+					<span class="inline-label">
+						<input type="search" ng-model="data.text" placeholder="Enter a message here">
+					</span>
+				</label>
+			</div>
+			<strong>Displaying: {{ data.text }}</strong>
+			<br></br>
+			<a class="button" ng-click="setMode(0)">Set Mode</a>
+		</div>
+	</div>
+</div>
