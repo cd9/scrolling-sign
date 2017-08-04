@@ -104,8 +104,9 @@ if __name__ == "__main__":
 			lastCheck = datetime.datetime.now()
 
 		diff = (datetime.datetime.now()-lastCheck).seconds
+		print diff
 
-		if (last!= showtext and diff>CRYPTO_CHECK_INTERVAL):
+		if ((last!= showtext and diff<CRYPTO_CHECK_INTERVAL) or (diff>CRYPTO_CHECK_INTERVAL)):
 			writeString(showtext, repetitions)
 			last = showtext
 			print ('it different')
