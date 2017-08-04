@@ -5,8 +5,14 @@ import datetime
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 from kraken import kraken
 
-SIGN_LENGTH = 26;
-repetitions = 5;
+SIGN_LENGTH = 15
+CRYPTO_CHECK_INTERVAL = 60#in seconds
+
+
+repetitions = 5
+lastCheck = None
+
+
 
 ser = None
 
@@ -41,6 +47,7 @@ if __name__ == "__main__":
 	mode = data['mode']
 	showtext = "booting up..."
 	last = None
+	lastCheck = datetime.datetime.now()
 	while True:
 		print("refreshing")
 		data = firebase.get('/data', None)
@@ -72,11 +79,30 @@ if __name__ == "__main__":
 			repetitions = 5
 		elif mode is 2:
 			pair = data['crypto']['pair']
-			price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
-			showtext = str(pair)+': '+str(price)
-			repetitions = 10
+			if pair is 'all':
+				showtext = ''
+				pair = 'ETHUSD'
+				price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
+				showtext = showtext + str(pair)+': '+str(price) + "     "
+				pair = 'XBTUSD'
+				price = k.getTickerInfo(pair)['result']['XXBTZUSD']['a'][0]
+				showtext = showtext + str(pair)+': '+str(price) + "     "
+				pair = 'LTCUSD'
+				price = k.getTickerInfo(pair)['result']['XLTCZUSD']['a'][0]
+				showtext = showtext + str(pair)+': '+str(price) + "     "
+				pair = 'ETHXBT'
+				price = k.getTickerInfo(pair)['result']['XETHZXBT']['a'][0]
+				showtext = showtext + str(pair)+': '+str(price) + "     "
+				repetitions = 3
+			else:
+				price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
+				showtext = str(pair)+': '+str(price)
+				repetitions = 5
+			lastCheck = datetime.datetime.now()
 
-		if (last!= showtext):
+		diff = (datetime.datetime.now()-lastCheck).seconds
+
+		if (last!= showtext||diff>CRYPTO_CHECK_INTERVAL):
 			writeString(showtext, repetitions)
 			last = showtext
 			print ('it different')
