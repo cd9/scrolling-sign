@@ -10,6 +10,7 @@ def writeString(s):
 	for i in range(0, len(s)):
 		ser.write(chr(s[i]))
 		time.sleep(0.010)
+	ser.write('~')
 
 
 if __name__ == "__main__":
