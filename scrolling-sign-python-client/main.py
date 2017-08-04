@@ -11,6 +11,8 @@ def writeString(s):
 		ser.write(s[i])
 		time.sleep(0.010)
 	ser.write('~')
+	time.sleep(0.010)
+	ser.close()
 
 
 if __name__ == "__main__":
@@ -55,5 +57,3 @@ if __name__ == "__main__":
 			writeString(showtext)
 			last = showtext
 			print ('it different')
-			ser.close()
-
