@@ -17,12 +17,12 @@ def writeString(s, repetitions):
 
 	for j in range(0, repetitions):
 		for i in range(0, len(s)):
-		time.sleep(0.01)
-		ser.write(s[i])
+			time.sleep(0.01)
+			ser.write(s[i])
 
 		for i in range(0, SIGN_LENGTH/4):
-		time.sleep(0.01)
-		ser.write(' ')
+			time.sleep(0.01)
+			ser.write(' ')
 
 	time.sleep(0.01)
 	ser.write('~')
