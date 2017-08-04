@@ -92,7 +92,7 @@ if __name__ == "__main__":
 				price = k.getTickerInfo(pair)['result']['XLTCZUSD']['a'][0]
 				showtext = showtext + str(pair)+': '+str(price) + "     "
 				pair = 'ETHXBT'
-				price = k.getTickerInfo(pair)['result']['XETHZXBT']['a'][0]
+				price = k.getTickerInfo(pair)['result']['XETHXXBT']['a'][0]
 				showtext = showtext + str(pair)+': '+str(price) + "     "
 				repetitions = 3
 			else:
