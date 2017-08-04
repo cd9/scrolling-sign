@@ -3,8 +3,39 @@ name: crypto-ticker
 url: /crypto-ticker
 ---
 
-<div class="grid-container">
-  <h1>Crypto Ticker</h1>
-  <p>Crypto Ticker displays current prices of cryptocurrencies.</p>
-  <p>Select an exhange and a currency pair.  Then click "Activate".</p>
+<div ng-controller="AppController" class="grid-container">
+	<div class="card">
+			<div class="card-divider">
+				<h1>Day of Week Messages</h1>
+			</div>
+			<br/>
+			<div class="small-12 grid-content">
+				<zf-accordion>
+				<zf-accordion-item title="Monday Message">
+					<input ng-model="data.monday" placeholder="It is Monday!">
+				</zf-accordion-item>
+				<zf-accordion-item title="Tuesday Message">
+					<input ng-model="data.tuesday" placeholder="It is Tuesday!">
+				</zf-accordion-item>
+				<zf-accordion-item title="Wednesday Message">
+					<input ng-model="data.wednesday" placeholder="It is Wednesday!">
+				</zf-accordion-item>
+				<zf-accordion-item title="Thursday Message">
+					<input ng-model="data.thursday" placeholder="It is Thursday!">
+				</zf-accordion-item>
+				<zf-accordion-item title="Friday Message">
+					<input ng-model="data.friday" placeholder="It is Friday!">
+				</zf-accordion-item>
+				<zf-accordion-item title="Saturday Message">
+					<input ng-model="data.saturday" placeholder="It is Saturday!">
+				</zf-accordion-item>
+				<zf-accordion-item title="Sunday Message">
+					<input ng-model="data.sunday" placeholder="It is Sunday!">
+				</zf-accordion-item>
+				</zf-accordion>
+				<br> </br>
+				<a class="button" ng-click="setMode(1)">Set Mode</a>
+			</div>
+			<br/>
+	</div>
 </div>

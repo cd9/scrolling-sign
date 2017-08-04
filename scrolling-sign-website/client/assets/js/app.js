@@ -33,6 +33,11 @@
         updateStatus();
       }
 
+      $scope.setMode = function(mode){
+        syncObject.mode = mode;
+        console.log(syncObject.mode);
+      }
+
       var updateStatus = function(){
         var user = firebase.auth().currentUser;
         if (user) {
