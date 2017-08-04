@@ -7,12 +7,10 @@ from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 ser = None
 
 def writeString(s):
-	ser.write(' ')
-	for i in range(0, len(s)):
-		ser.write(s[i])
-		#time.sleep(0.1)
+	ser.write(s)
+	#for i in range(0, len(s)):
+	#	ser.write(s[i])
 	ser.write('~')
-	#time.sleep(0.1)
 
 
 if __name__ == "__main__":
