@@ -5,7 +5,7 @@ import datetime
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 from kraken import kraken
 
-SIGN_LENGTH = 15
+SIGN_LENGTH = 26
 CRYPTO_CHECK_INTERVAL = 60#in seconds
 
 
