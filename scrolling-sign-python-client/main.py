@@ -11,7 +11,7 @@ CRYPTO_CHECK_INTERVAL = 60#in seconds
 
 repetitions = 5
 lastCheck = None
-
+diff = None
 
 
 ser = None
@@ -48,6 +48,7 @@ if __name__ == "__main__":
 	showtext = "booting up..."
 	last = None
 	lastCheck = datetime.datetime.now()
+	diff = CRYPTO_CHECK_INTERVAL
 	while True:
 		print("refreshing")
 		data = firebase.get('/data', None)
