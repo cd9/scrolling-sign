@@ -8,7 +8,9 @@ ser = None
 
 def writeString(s):
 	for i in range(0, len(s)):
+		time.sleep(0.01)
 		ser.write(s[i])
+	time.sleep(0.01)
 	ser.write('~')
 
 
