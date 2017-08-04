@@ -54,6 +54,8 @@ if __name__ == "__main__":
 		mode = data['mode']
 		print(mode)
 		last = showtext
+		diff = (datetime.datetime.now()-lastCheck).seconds
+		print diff
 		if mode is 0:
 			#MODE 0 = static text
 			showtext = data['text']
@@ -78,35 +80,35 @@ if __name__ == "__main__":
 			print(showtext)
 			repetitions = 5
 		elif mode is 2:
-			pair = data['crypto']['pair']
-			if (pair=='all'):
-				showtext = ''
-				pair = 'ETHUSD'
-				price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
-				showtext = showtext + str(pair)+': '+str(price) + "     "
-				pair = 'XBTUSD'
-				price = k.getTickerInfo(pair)['result']['XXBTZUSD']['a'][0]
-				showtext = showtext + str(pair)+': '+str(price) + "     "
-				pair = 'LTCUSD'
-				price = k.getTickerInfo(pair)['result']['XLTCZUSD']['a'][0]
-				showtext = showtext + str(pair)+': '+str(price) + "     "
-				pair = 'ETHXBT'
-				price = k.getTickerInfo(pair)['result']['XETHXXBT']['a'][0]
-				showtext = showtext + str(pair)+': '+str(price) + "     "
-				repetitions = 3
-			else:
-				print pair
-				price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
-				showtext = str(pair)+': '+str(price)
-				repetitions = 5
+			if (diff>CRYPTO_CHECK_INTERVAL):
+				pair = data['crypto']['pair']
+				if (pair=='all'):
+					showtext = ''
+					pair = 'ETHUSD'
+					price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
+					showtext = showtext + str(pair)+': '+str(price) + "     "
+					pair = 'XBTUSD'
+					price = k.getTickerInfo(pair)['result']['XXBTZUSD']['a'][0]
+					showtext = showtext + str(pair)+': '+str(price) + "     "
+					pair = 'LTCUSD'
+					price = k.getTickerInfo(pair)['result']['XLTCZUSD']['a'][0]
+					showtext = showtext + str(pair)+': '+str(price) + "     "
+					pair = 'ETHXBT'
+					price = k.getTickerInfo(pair)['result']['XETHXXBT']['a'][0]
+					showtext = showtext + str(pair)+': '+str(price) + "     "
+					repetitions = 3
+				else:
+					print pair
+					price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
+					showtext = str(pair)+': '+str(price)
+					repetitions = 5
 
-			print showtext
-			lastCheck = datetime.datetime.now()
+				lastCheck = datetime.datetime.now()
+				print showtext
 
-		diff = (datetime.datetime.now()-lastCheck).seconds
-		print diff
+		
 
-		if ((last!= showtext and diff<CRYPTO_CHECK_INTERVAL) or (diff>CRYPTO_CHECK_INTERVAL)):
+		if (last!= showtext):
 			writeString(showtext, repetitions)
 			last = showtext
 			print ('it different')
