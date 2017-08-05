@@ -16,6 +16,13 @@ diff = None
 
 ser = None
 
+cryptocode = {
+	'ETHUSD':'XETHZUSD',
+	'XBTUSD':'XXBTZUSD',
+	'LTCUSD':'XLTCZUSD',
+	'ETHXBT':'XETHXXBT'
+}
+
 def writeString(s, repetitions):
 	for i in range(0, SIGN_LENGTH):
 		time.sleep(0.01)
@@ -98,7 +105,7 @@ if __name__ == "__main__":
 					repetitions = 6
 				else:
 					print pair
-					price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
+					price = k.getTickerInfo(pair)['result'][cryptcode[pair]]['a'][0]
 					showtext = str(pair)+': '+str(price)
 					repetitions = 6
 
