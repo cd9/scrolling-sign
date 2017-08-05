@@ -105,7 +105,7 @@ if __name__ == "__main__":
 					repetitions = 6
 				else:
 					print pair
-					price = k.getTickerInfo(pair)['result'][cryptcode[pair]]['a'][0]
+					price = k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]
 					showtext = str(pair)+': '+str(price)
 					repetitions = 6
 
