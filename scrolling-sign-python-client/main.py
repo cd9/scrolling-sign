@@ -55,8 +55,6 @@ if __name__ == "__main__":
 		mode = data['mode']
 		print(mode)
 		last = showtext
-		
-		print diff
 		if mode is 0:
 			#MODE 0 = static text
 			showtext = data['text']
@@ -97,12 +95,12 @@ if __name__ == "__main__":
 					pair = 'ETHXBT'
 					price = k.getTickerInfo(pair)['result']['XETHXXBT']['a'][0]
 					showtext = showtext + str(pair)+': '+str(price) + "     "
-					repetitions = 3
+					repetitions = 6
 				else:
 					print pair
 					price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
 					showtext = str(pair)+': '+str(price)
-					repetitions = 5
+					repetitions = 6
 
 				lastCheck = datetime.datetime.now()
 				print showtext
