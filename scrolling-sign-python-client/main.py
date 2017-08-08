@@ -52,14 +52,14 @@ def gainstring(k, pair):
 		return " "
 	delta = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]) - float(cryptocache[pair])
 	if (delta>=0):
-		return "+" + str(round(delta, 2))
+		return "+" + str(round(delta, 3))
 	else:
-		return "-" + str(round(delta, 2))[1:]
+		return "-" + str(round(delta, 3))[1:]
 
 
 def pricestring(k, pair):
 	price = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0])
-	return str(pair)+': '+str(round(price, 2)) + " " + gainstring(k, pair) + "     "
+	return str(pair)+': '+str(round(price, 3)) + " " + gainstring(k, pair) + "     "
 
 def updatecache(k, pair):
 	cryptocache[pair] = k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]
