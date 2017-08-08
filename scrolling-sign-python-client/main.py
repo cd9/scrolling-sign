@@ -52,7 +52,7 @@ def gainstring(k, pair):
 		return " "
 	delta = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]) - float(cryptocache[pair])
 	if (round(delta, 2)>=0):
-		if (round(delta, 2))==0):
+		if (round(delta, 2)==0):
 			if (str(round(delta, 2))[0]=='-'):
 				return " +" + str(round(delta, 2))[1:]+" "
 			return " +" + str(round(delta, 2))+" "
