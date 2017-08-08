@@ -12,7 +12,7 @@ CRYPTO_CHECK_INTERVAL = 60#in seconds
 repetitions = 5
 lastCheck = None
 diff = None
-
+firstcryptocheck = 1
 
 ser = None
 
@@ -21,6 +21,13 @@ cryptocode = {
 	'XBTUSD':'XXBTZUSD',
 	'LTCUSD':'XLTCZUSD',
 	'ETHXBT':'XETHXXBT'
+}
+
+cryptocache = {
+	'ETHUSD':0,
+	'XBTUSD':0,
+	'LTCUSD':0,
+	'ETHXBT':0
 }
 
 def writeString(s, repetitions):
@@ -40,6 +47,26 @@ def writeString(s, repetitions):
 	time.sleep(0.01)
 	ser.write('~')
 
+def gainstring(k, pair):
+	if(firstcryptocheck==1):
+		return
+	delta = k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0] - cryptocache[pair]
+	if (delta>=0):
+		return "+" + str(round(delta, 2))
+	else
+		return "-" + str(round(delta, 2))[1:]
+
+
+def pricestring(k, pair):
+	price = k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]
+	return str(pair)+': '+str(round(price, 2)) + " " + gainstring(k, pair) + "     "
+
+def updatecache(k, pair):
+	cryptocache[pair] = k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]
+
+
+
+
 
 if __name__ == "__main__":
 	k = kraken()
@@ -55,7 +82,7 @@ if __name__ == "__main__":
 	showtext = "booting up..."
 	last = None
 	lastCheck = datetime.datetime.now()
-	diff = CRYPTO_CHECK_INTERVAL
+	diff = CRYPTO_CHECK_INTERVAL+1
 	while True:
 		print("refreshing")
 		data = firebase.get('/data', None)
@@ -89,26 +116,19 @@ if __name__ == "__main__":
 			if (diff>CRYPTO_CHECK_INTERVAL):
 				pair = data['crypto']['pair']
 				if (pair=='all'):
-					showtext = ''
-					pair = 'ETHUSD'
-					price = k.getTickerInfo(pair)['result']['XETHZUSD']['a'][0]
-					showtext = showtext + str(pair)+': '+str(price) + "     "
-					pair = 'XBTUSD'
-					price = k.getTickerInfo(pair)['result']['XXBTZUSD']['a'][0]
-					showtext = showtext + str(pair)+': '+str(price) + "     "
-					pair = 'LTCUSD'
-					price = k.getTickerInfo(pair)['result']['XLTCZUSD']['a'][0]
-					showtext = showtext + str(pair)+': '+str(price) + "     "
-					pair = 'ETHXBT'
-					price = k.getTickerInfo(pair)['result']['XETHXXBT']['a'][0]
-					showtext = showtext + str(pair)+': '+str(price) + "     "
-					repetitions = 6
+					showtext = pricestring(k, 'ETHUSD')
+					showtext = showtext + pricestring(k, 'XBTUSD')
+					showtext = showtext + pricestring(k, 'LTCUSD')
+					showtext = showtext + pricestring(k, 'ETHXBT')
+					repetitions = 8
 				else:
-					print pair
-					price = k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]
-					showtext = str(pair)+': '+str(price)
-					repetitions = 6
-
+					showtext = pricestring(k, pair)
+					repetitions = 12
+				updatecache(k, 'ETHUSD')
+				updatecache(k, 'XBTUSD')
+				updatecache(k, 'LTCUSD')
+				updatecache(k, 'ETHXBT')
+				firstcryptocheck = 0
 				lastCheck = datetime.datetime.now()
 				print showtext
 		diff = (datetime.datetime.now()-lastCheck).seconds
