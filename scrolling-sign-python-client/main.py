@@ -50,7 +50,7 @@ def writeString(s, repetitions):
 def gainstring(k, pair):
 	if(firstcryptocheck==1):
 		return " "
-	delta = k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0] - cryptocache[pair]
+	delta = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]) - float(cryptocache[pair])
 	if (delta>=0):
 		return "+" + str(round(delta, 2))
 	else:
@@ -120,10 +120,10 @@ if __name__ == "__main__":
 					showtext = showtext + pricestring(k, 'XBTUSD')
 					showtext = showtext + pricestring(k, 'LTCUSD')
 					showtext = showtext + pricestring(k, 'ETHXBT')
-					repetitions = 8
+					repetitions = 6
 				else:
 					showtext = pricestring(k, pair)
-					repetitions = 12
+					repetitions = 8
 				updatecache(k, 'ETHUSD')
 				updatecache(k, 'XBTUSD')
 				updatecache(k, 'LTCUSD')
