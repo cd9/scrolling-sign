@@ -51,7 +51,7 @@ def gainstring(k, pair):
 	if(firstcryptocheck==1):
 		return " "
 	delta = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]) - float(cryptocache[pair])
-	if (delta>=0):
+	if (round(delta, 2)>=0):
 		return "[+" + str(round(delta, 2))+"]"
 	else:
 		return "{-" + str(round(delta, 2))[1:]+"}"
@@ -59,7 +59,7 @@ def gainstring(k, pair):
 
 def pricestring(k, pair):
 	price = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0])
-	return str(pair)+': '+str(round(price, 3)) + gainstring(k, pair) + "    "
+	return str(pair)+': '+str(round(price, 3)) + gainstring(k, pair) + "      "
 
 def updatecache(k, pair):
 	cryptocache[pair] = k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]
@@ -111,7 +111,7 @@ if __name__ == "__main__":
 			elif showtext is 6:
 				showtext = data['sunday']
 			print(showtext)
-			repetitions = 5
+			repetitions = 8
 		elif mode is 2:
 			if (diff>CRYPTO_CHECK_INTERVAL):
 				pair = data['crypto']['pair']
@@ -120,10 +120,10 @@ if __name__ == "__main__":
 					showtext = showtext + pricestring(k, 'XBTUSD')
 					showtext = showtext + pricestring(k, 'LTCUSD')
 					showtext = showtext + pricestring(k, 'ETHXBT')
-					repetitions = 5
+					repetitions = 8
 				else:
 					showtext = pricestring(k, pair)
-					repetitions = 7
+					repetitions = 8
 				updatecache(k, 'ETHUSD')
 				updatecache(k, 'XBTUSD')
 				updatecache(k, 'LTCUSD')
