@@ -120,10 +120,10 @@ if __name__ == "__main__":
 					showtext = showtext + pricestring(k, 'XBTUSD')
 					showtext = showtext + pricestring(k, 'LTCUSD')
 					showtext = showtext + pricestring(k, 'ETHXBT')
-					repetitions = 6
+					repetitions = 5
 				else:
 					showtext = pricestring(k, pair)
-					repetitions = 7
+					repetitions = 6
 				updatecache(k, 'ETHUSD')
 				updatecache(k, 'XBTUSD')
 				updatecache(k, 'LTCUSD')
