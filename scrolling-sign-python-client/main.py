@@ -4,6 +4,19 @@ import time
 import datetime
 from firebase.firebase import FirebaseApplication, FirebaseAuthentication
 from kraken import kraken
+import tweepy
+from tweepy import OAuthHandler
+import json
+ 
+consumer_key = 
+consumer_secret = 
+access_token = 
+access_secret = 
+ 
+auth = OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_secret)
+ 
+api = tweepy.API(auth)
 
 SIGN_LENGTH = 26
 CRYPTO_CHECK_INTERVAL = 60#in seconds
@@ -137,7 +150,10 @@ if __name__ == "__main__":
 				print showtext
 		diff = (datetime.datetime.now()-lastCheck).seconds
 		print diff
-		
+		elif mode is 3:
+			showtext = ""
+			for tweet in tweepy.Cursor(api.user_timeline(screen_name=data['twittersn'], count=5)).items():
+   				showtext = showtext + "@"+data['twittersn']+": "tweet.text+"   "
 
 		if (last!= showtext):
 			writeString(showtext, repetitions)
