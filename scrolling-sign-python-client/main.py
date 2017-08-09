@@ -8,10 +8,6 @@ import tweepy
 from tweepy import OAuthHandler
 import json
  
-consumer_key = 
-consumer_secret = 
-access_token = 
-access_secret = 
  
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
@@ -148,12 +144,18 @@ if __name__ == "__main__":
 				firstcryptocheck = 0
 				lastCheck = datetime.datetime.now()
 				print showtext
-		diff = (datetime.datetime.now()-lastCheck).seconds
-		print diff
 		elif mode is 3:
 			showtext = ""
-			for tweet in tweepy.Cursor(api.user_timeline(screen_name=data['twittersn'], count=5)).items():
-   				showtext = showtext + "@"+data['twittersn']+": "tweet.text+"   "
+			g = 0
+			for tweet in tweepy.Cursor(api.user_timeline, id=data['twittersn'], count=3).items():
+   				showtext = showtext + "@"+str(data['twittersn'].encode('utf-8'))+": "+tweet.text+"   "
+				g = g + 1
+				if (g>=3):
+					break
+				
+			repetitions = 1
+		diff = (datetime.datetime.now()-lastCheck).seconds
+                print(diff)
 
 		if (last!= showtext):
 			writeString(showtext, repetitions)
