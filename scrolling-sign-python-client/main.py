@@ -57,9 +57,14 @@ def writeString(s, repetitions):
 	ser.write('~')
 
 def gainstring(k, pair):
+	delta = None
 	if(firstcryptocheck==1):
 		return " "
-	delta = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]) - float(cryptocache[pair])
+	try:
+		delta = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0]) - float(cryptocache[pair])
+	except Exception as inst:
+		print inst
+		delta = 0
 	if (round(delta, 2)>=0):
 		if (round(delta, 2)==0):
 			if (str(round(delta, 2))[0]=='-'):
@@ -71,7 +76,12 @@ def gainstring(k, pair):
 
 
 def pricestring(k, pair):
-	price = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0])
+	price = None
+	try:
+		price = float(k.getTickerInfo(pair)['result'][cryptocode[pair]]['a'][0])
+	except Exception as inst:
+		print inst
+		price = cryptocache[pair]
 	return str(pair)+': '+str(round(price, 3)) + gainstring(k, pair) + "      "
 
 def updatecache(k, pair):
