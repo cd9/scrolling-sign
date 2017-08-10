@@ -1,3 +1,5 @@
+
+
 from firebase import firebase
 import serial
 import time
@@ -8,6 +10,7 @@ import tweepy
 from tweepy import OAuthHandler
 import json
 
+time.sleep(15)
 
 SIGN_LENGTH = 26
 CRYPTO_CHECK_INTERVAL = 60#in seconds
@@ -172,6 +175,6 @@ if __name__ == "__main__":
                 print(diff)
 
 		if (last!= showtext):
-			writeString(showtext, repetitions)
+			writeString(showtext.encode('utf-8'), repetitions)
 			last = showtext
 			print ('it different')
