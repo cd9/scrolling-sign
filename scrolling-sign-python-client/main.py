@@ -7,16 +7,10 @@ from kraken import kraken
 import tweepy
 from tweepy import OAuthHandler
 import json
- 
- 
-auth = OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_secret)
- 
-api = tweepy.API(auth)
+
 
 SIGN_LENGTH = 26
 CRYPTO_CHECK_INTERVAL = 60#in seconds
-
 
 repetitions = 5
 lastCheck = None
@@ -103,6 +97,16 @@ if __name__ == "__main__":
 	data = firebase.get('/data', None)
 	mode = data['mode']
 	showtext = "booting up..."
+
+	consumer_key = data['twitter']['consumerkey']
+	consumer_secret = data['twitter']['consumersecret']
+	access_token = data['twitter']['accesstoken']
+	access_secret = data['twitter']['accesssecret']
+
+	auth = OAuthHandler(consumer_key, consumer_secret)
+	auth.set_access_token(access_token, access_secret)
+	api = tweepy.API(auth)
+
 	last = None
 	lastCheck = datetime.datetime.now()
 	diff = CRYPTO_CHECK_INTERVAL+1
