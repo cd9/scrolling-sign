@@ -1,6 +1,5 @@
 {
   "projects": {
-    "staging": "scrolling-sign",
-    "default": "scrolling-sign"
+    "default": "scrolling-led-sign"
   }
 }
